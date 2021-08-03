@@ -1,5 +1,6 @@
 import './App.css'
 import Expenses from './components/Expenses/Expenses'
+import NewExpense from './components/NewExpense/NewExpense'
 
 function App() {
   const expenses = [
@@ -13,9 +14,13 @@ function App() {
     },
     {id: 5, title: 'Maintenance', amount: 400.0, date: new Date(2021, 11, 14)},
   ]
+
+  const addExpense = expenseData => {
+    console.log(expenseData)
+  }
   return (
     <div className="App">
-      <h1>Let's get started</h1>
+      <NewExpense addExpense={addExpense} />
       <div className="container">
         <Expenses expenses={expenses} />
       </div>
