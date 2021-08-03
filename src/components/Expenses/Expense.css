@@ -1,0 +1,12 @@
+.expense-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.expenses {
+  width: 600px;
+  padding: 0 1rem;
+  background-color: #1f1e1e;
+  /* border-radius: 12px; */
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
