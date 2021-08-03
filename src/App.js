@@ -1,8 +1,10 @@
+import React, {useState} from 'react'
 import './App.css'
 import Expenses from './components/Expenses/Expenses'
 import NewExpense from './components/NewExpense/NewExpense'
 
 function App() {
+  const [expense, setExpense] = useState({})
   const expenses = [
     {id: 1, title: 'Toilet paper', amount: 398.78, date: new Date(2021, 7, 2)},
     {id: 2, title: 'New Tv', amount: 235.09, date: new Date(2021, 4, 12)},
@@ -16,13 +18,13 @@ function App() {
   ]
 
   const addExpense = expenseData => {
-    console.log(expenseData)
+    setExpense(expenseData)
   }
   return (
     <div className="App">
       <NewExpense addExpense={addExpense} />
       <div className="container">
-        <Expenses expenses={expenses} />
+        <Expenses expenses={expenses} expense={expense} />
       </div>
     </div>
   )
