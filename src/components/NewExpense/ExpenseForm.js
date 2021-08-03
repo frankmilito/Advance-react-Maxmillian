@@ -19,8 +19,9 @@ function ExpenseForm(props) {
     })
   }
   const dateChangeHandler = e => {
-    let newDate = e.target.value
-    const data = new Date(newDate)
+    // let newDate = e.target.value
+    // const data = new Date(newDate)
+    const newDate = new Date(e.target.value)
     setUserInput({
       ...userInput,
       date: e.target.value,
