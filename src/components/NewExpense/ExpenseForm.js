@@ -24,17 +24,23 @@ function ExpenseForm(props) {
     const newDate = new Date(e.target.value)
     setUserInput({
       ...userInput,
-      date: e.target.value,
+      date: newDate,
     })
   }
   const submitHandler = e => {
     e.preventDefault()
-    setUserInput({
-      title: '',
-      amount: '',
-      date: '',
-    })
-    props.saveExpense(userInput)
+    if (
+      userInput.amount !== '' &&
+      userInput.date !== '' &&
+      userInput.title !== ''
+    ) {
+      setUserInput({
+        title: '',
+        amount: '',
+        date: '',
+      })
+      props.saveExpense(userInput)
+    }
   }
   return (
     <form onSubmit={submitHandler}>

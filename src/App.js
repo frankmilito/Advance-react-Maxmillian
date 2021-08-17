@@ -21,7 +21,6 @@ function App() {
     setExpense(prevState => {
       return [expenseData, ...prevState]
     })
-    console.log(expenses)
   }
   return (
     <div className="App">
