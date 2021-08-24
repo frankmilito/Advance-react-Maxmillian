@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import './ExpenseForm.css'
 function ExpenseForm(props) {
+  const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState({
     title: '',
     amount: '',
@@ -19,24 +20,33 @@ function ExpenseForm(props) {
     })
   }
   const dateChangeHandler = e => {
-    let newDate = e.target.value
-    const data = new Date(newDate)
+    // let newDate = e.target.value
+    // const data = new Date(newDate)
+    const newDate = new Date(e.target.value)
     setUserInput({
       ...userInput,
-      date: e.target.value,
+      date: newDate,
     })
   }
   const submitHandler = e => {
     e.preventDefault()
-    setUserInput({
-      title: '',
-      amount: '',
-      date: '',
-    })
-    props.saveExpense(userInput)
+    if (
+      userInput.amount !== '' &&
+      userInput.date !== '' &&
+      userInput.title !== ''
+    ) {
+      setUserInput({
+        title: '',
+        amount: '',
+        date: '',
+      })
+      props.saveExpense(userInput)
+    }
   }
   return (
     <form onSubmit={submitHandler}>
+      {isOpen? (
+      <>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -70,6 +80,12 @@ function ExpenseForm(props) {
       <div className="new-expense__actions">
         <button type="submit">Add expense</button>
       </div>
+      </>):(
+        <div className="expense_actions">
+        <button type="submit" onClick={()=>setIsOpen(!isOpen)}>Add expense</button>
+      </div>
+      
+      )}
     </form>
   )
 }
