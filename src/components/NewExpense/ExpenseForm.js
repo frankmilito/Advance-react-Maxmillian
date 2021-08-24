@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import './ExpenseForm.css'
 function ExpenseForm(props) {
+  const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState({
     title: '',
     amount: '',
@@ -44,6 +45,8 @@ function ExpenseForm(props) {
   }
   return (
     <form onSubmit={submitHandler}>
+      {isOpen? (
+      <>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -77,6 +80,12 @@ function ExpenseForm(props) {
       <div className="new-expense__actions">
         <button type="submit">Add expense</button>
       </div>
+      </>):(
+        <div className="expense_actions">
+        <button type="submit" onClick={()=>setIsOpen(!isOpen)}>Add expense</button>
+      </div>
+      
+      )}
     </form>
   )
 }
